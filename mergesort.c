@@ -64,6 +64,7 @@ void merge(int init[], int merged[], int left, int mid, int right)
 	i = left;
 	j = mid + 1;
 	k = i;
+	int n = right - left;   
 
 	while (i <= mid && j <= right) {
 		if (init[i] < init[j])
@@ -76,4 +77,10 @@ void merge(int init[], int merged[], int left, int mid, int right)
 		merged[k++] = init[i++];
 	while (j <= right)
 		merged[k++] = init[j++]; // 将右子表中剩余的数据拷贝到merged数组
+
+	while (n >= 0) {
+		init[right] = merged[right];  // 将已排序好的子数组保存到原数组中
+		right -= 1;
+		n--;
+	}
 }
